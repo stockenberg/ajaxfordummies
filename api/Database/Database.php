@@ -24,7 +24,7 @@ trait Database
         return $dbh;
     }
 
-    public static function get(string $sql = NULL, array $exec = NULL, $classname = NULL)
+    public static function getObj(string $sql = NULL, array $exec = NULL, $classname = NULL)
     {
        $db = self::getInstance();
        $stmt = $db->prepare($sql);
@@ -40,6 +40,15 @@ trait Database
         $stmt->execute($execArr);
 
         return $stmt->fetchAll(\PDO::FETCH_CLASS, $classname);
+
+    }
+
+    public static function SET(string $sql, array $execArr = array())
+    {
+        $db = self::getInstance();
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute($execArr);
 
     }
 }
