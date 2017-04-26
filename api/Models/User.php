@@ -11,8 +11,7 @@ namespace api\Models;
 
 use api\Database\Database;
 
-class User
+class User extends Database
 {
-    use Database;
 
 }

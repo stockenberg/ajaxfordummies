@@ -9,46 +9,62 @@
 namespace api\Database;
 
 
-trait Database
+class Database
 {
 
-    public $user = "marten";
-    public $password = "1234";
-    public $database = "ajax";
+    public static $user = "marten";
+    public static $password = "1234";
+    public static $database = "ajax";
 
     public function getInstance()
     {
-        $dbh = new \PDO("mysql:host=localhost;dbname={$this->database};charset=UFT-8", $this->user, $this->password);
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-
-        return $dbh;
+        try {
+            $dbh = new \PDO("mysql:host=localhost;dbname=" . self::$database . ";", self::$user, self::$password, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+        return $dbh ?? "";
     }
 
     public static function getObj(string $sql = NULL, array $exec = NULL, $classname = NULL)
     {
-       $db = self::getInstance();
-       $stmt = $db->prepare($sql);
-       $stmt->execute($exec);
-        return $stmt->fetchObject($classname);
+        try {
+            $db = self::getInstance();
+            $stmt = $db->prepare($sql);
+            $stmt->execute($exec);
+            return $stmt->fetchObject($classname);
+        } catch (\Error $e) {
+            echo $e->getMessage() . PHP_EOL;
+        }
+
     }
 
     public static function GETObjArr(string $sql, array $execArr = array(), string $classname)
     {
-        $db = self::getInstance();
+        try {
+            $db = self::getInstance();
 
-        $stmt = $db->prepare($sql);
-        $stmt->execute($execArr);
+            $stmt = $db->prepare($sql);
+            $stmt->execute($execArr);
 
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, $classname);
+            return $stmt->fetchAll(\PDO::FETCH_CLASS, $classname);
+        } catch (\Error $e) {
+            echo $e->getMessage() . PHP_EOL;
+        }
 
     }
 
     public static function SET(string $sql, array $execArr = array())
     {
-        $db = self::getInstance();
+        try {
+            $db = self::getInstance();
 
-        $stmt = $db->prepare($sql);
-        $stmt->execute($execArr);
+            $stmt = $db->prepare($sql);
+            $stmt->execute($execArr);
+        } catch (\Error $e) {
+            echo $e->getMessage() . PHP_EOL;
+        }
 
     }
 }

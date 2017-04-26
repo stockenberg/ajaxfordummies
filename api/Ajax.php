@@ -9,6 +9,9 @@
 namespace api;
 
 
+use api\Database\Database;
+use api\Models\User;
+
 class Ajax
 {
 
@@ -16,8 +19,9 @@ class Ajax
 
     public function run()
     {
+        $user = User::SET("SELECT * FROM users", []);
         $this->request = array_merge($_GET, $_POST);
-        switch ($this->request["page"]){
+        switch ($this->request["page"] ?? ""){
 
             case "user":
 
