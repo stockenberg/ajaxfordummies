@@ -30,4 +30,8 @@ class Ajax
         }
     }
 
+    public static function _e($param){
+        echo json_encode($param);
+    }
+
 }

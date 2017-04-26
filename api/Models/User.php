@@ -9,7 +9,10 @@
 namespace api\Models;
 
 
+use api\Database\Database;
+
 class User
 {
+    use Database;
 
 }
