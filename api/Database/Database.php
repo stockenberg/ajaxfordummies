@@ -27,6 +27,20 @@ class Database
         return $dbh ?? "";
     }
 
+
+    public static function get(string $sql = NULL, array $exec = NULL)
+    {
+        try {
+            $db = self::getInstance();
+            $stmt = $db->prepare($sql);
+            $stmt->execute($exec);
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\Error $e) {
+            echo $e->getMessage() . PHP_EOL;
+        }
+
+    }
+
     public static function getObj(string $sql = NULL, array $exec = NULL, $classname = NULL)
     {
         try {
@@ -62,8 +76,10 @@ class Database
 
             $stmt = $db->prepare($sql);
             $stmt->execute($execArr);
+            return true;
         } catch (\Error $e) {
             echo $e->getMessage() . PHP_EOL;
+            return false;
         }
 
     }

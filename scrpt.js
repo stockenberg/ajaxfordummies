@@ -34,7 +34,7 @@ function change() {
         url: "index.php?case=message",
         data: data
     }).done(function (response) {
-
+        console.log(response);
         $("ul").empty();
 
 
@@ -53,7 +53,54 @@ function change() {
     });
 }
 
+function read() {
+
+    $.ajax({
+        method: "GET",
+        url: "api/api.php?case=user&action=read"
+    }).done(function (response) {
+        console.log(response);
+        var data = $.parseJSON(response);
+        console.log(data);
+        $("tbody").empty();
+
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i].user_name)
+            $("tbody").append("" +
+                "<tr>" +
+                "<td>" + data[i].user_id + "</td>" +
+                "<td>" + data[i].user_name + "</td>" +
+                "<td>" + data[i].user_created + "</td>" +
+                "<td>Löschen / edit</td>" +
+                "</tr>")
+        }
+    });
+}
+
+function create() {
+    var username = $("input[name='username']").val();
+
+    $.ajax({
+        method: "POST",
+        url: "api/api.php?case=user&action=save",
+        data: {username: username}
+    }).done(function (response) {
+        console.log(response);
+        var data = $.parseJSON(response);
+        $("input[name='username']").val("");
+        Materialize.toast(data.message, 4000)
+        read();
+    });
+}
+
 $(document).ready(function () {
 
+    read();
+
+    $("form").submit(function (e) {
+        e.preventDefault();
+        create();
+
+    });
 
 });

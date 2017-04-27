@@ -9,6 +9,9 @@
 namespace api\Controllers;
 
 
+use api\Ajax;
+use api\Models\User;
+
 class UserController
 {
 
@@ -20,7 +23,22 @@ class UserController
         switch ($this->request["action"]){
 
             case "save":
+                $status = [];
+                if(!empty($_POST)){
+                    if($_POST["username"] === ""){
+                        $status["error"] = "Username ist leer";
+                    }
+                    if(empty($status)){
+                        $user = new User();
+                        if($user->save($_POST)){
+                            return ["success" => "true", "message" => "Daten gespeichert"];
+                        }
+                        return ["success" => "false", "message" => "Fehler aufgetreten"];
+                    }else{
 
+                        return ["success" => "false", "message" => "Fehler aufgetreten", "errors" => $status];
+                    }
+                }
                 break;
 
             case "update":
@@ -32,7 +50,8 @@ class UserController
                 break;
 
             case "read":
-
+                $user = new User();
+                return $user->getUsers();
                 break;
         }
     }

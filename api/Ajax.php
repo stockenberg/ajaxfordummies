@@ -9,8 +9,7 @@
 namespace api;
 
 
-use api\Database\Database;
-use api\Models\User;
+use api\Controllers\UserController;
 
 class Ajax
 {
@@ -19,12 +18,13 @@ class Ajax
 
     public function run()
     {
-        $user = User::SET("SELECT * FROM users", []);
+
         $this->request = array_merge($_GET, $_POST);
-        switch ($this->request["page"] ?? ""){
+
+        switch ($this->request["case"] ?? "") {
 
             case "user":
-
+                return (new UserController())->run();
                 break;
 
             case "task":
@@ -34,7 +34,8 @@ class Ajax
         }
     }
 
-    public static function _e($param){
+    public static function _e($param)
+    {
         echo json_encode($param);
     }
 

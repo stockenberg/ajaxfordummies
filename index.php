@@ -5,6 +5,11 @@
  * Date: 19.04.17
  * Time: 16:07
  */
+
+session_name("myApp");
+session_start();
+
+$_SESSION["test"] = "asdasd";
 require_once "Data.php";
 
 switch ($_GET["case"] ?? null) {

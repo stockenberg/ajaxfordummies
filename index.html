@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="materialize/css/materialize.min.css">
 </head>
 <body>
 
-<form action="">
-    <p>
-        <label for="firstname">Vorname</label>
-        <input type="text" onchange="change()" name="firstname" id="firstname"/>
-    </p>
-    <p>
-        <label for="lastname">Nachname</label>
-        <input type="text" onchange="change()" name="lastname" id="lastname"/>
-    </p>
-    <p>
-        <label for="message">Nachricht</label>
-        <textarea name="message" onchange="change()" id="message"></textarea>
-    </p>
-    <input type="submit" value="Absenden">
-</form>
-start
-<ul>
+<main>
 
-</ul>
+    <form action="">
+        <p>
+            <label for="username">Benutzername</label>
+            <input type="text" name="username" id=""/>
+        </p>
+        <input type="submit" class="btn" value="User erstellen">
+    </form>
+    <br/><br/><br/><br/>
+    <table class="table striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>created</th>
+                <th>actions</th>
+            </tr>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</main>
 
 
 <script src="jquery.js"></script>
+<script src="materialize/js/materialize.min.js"></script>
 <script src="scrpt.js"></script>
 </body>
 </html>
