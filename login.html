@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+</head>
+<body>
+
+<div class="row">
+    <h2>Login</h2>
+    <form class="col s12" method="post">
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="username" name="username" type="text" class="validate">
+                <label for="username">Benutzername</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="password" name="password" type="password" class="validate">
+                <label for="password">Password</label>
+            </div>
+            <div class="input-field col 12">
+                <input type="submit" class="btn" value="Einloggen">
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<script src="jquery.js"></script>
+<script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+<script src="login.js"></script>
+</body>
+</html>

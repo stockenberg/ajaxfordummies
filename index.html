@@ -7,18 +7,21 @@
 </head>
 <body>
 
-<main>
+<main style="margin: 50px;">
+    <div class="row">
+        <form action="">
+            <p>
+                <label for="username">Benutzername</label>
+                <input type="text" id="username" name="username" id=""/>
+            </p>
+            <input type="submit" class="btn" value="User erstellen">
+        </form>
+    </div>
 
-    <form action="">
-        <p>
-            <label for="username">Benutzername</label>
-            <input type="text" name="username" id=""/>
-        </p>
-        <input type="submit" class="btn" value="User erstellen">
-    </form>
     <br/><br/><br/><br/>
-    <table class="table striped">
-        <thead>
+    <div class="row">
+        <table class="table striped">
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>Username</th>
@@ -26,11 +29,12 @@
                 <th>actions</th>
             </tr>
 
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </main>
 
 
