@@ -21,8 +21,7 @@ class Ajax
     {
         session_name("ajaxapi");
         session_start();
-
-
+        
         $this->request = array_merge($_GET, $_POST);
 
         switch ($this->request["case"] ?? "") {

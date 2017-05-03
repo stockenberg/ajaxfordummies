@@ -16,7 +16,7 @@ class Database
     public static $password = "1234";
     public static $database = "ajax";
 
-    public function getInstance()
+    public static function getInstance()
     {
         try {
             $dbh = new \PDO("mysql:host=localhost;dbname=" . self::$database . ";", self::$user, self::$password, array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
